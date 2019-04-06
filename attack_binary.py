@@ -17,7 +17,7 @@ for i in range(k_len):
     word = ''
     for i in range(5):
         word += random.choice(alphabet)
-    k.append(word)
+    k.append(encode(key, word))
 
 
 # Create our binary attack files.
@@ -42,7 +42,7 @@ for i in range(int(math.log(k_len, 2))):
 
 # Run the search query.
 results = []
-query = q # defined in the constants
+query = encode(key, q)
 
 for i in range(len(files)):
     found = False
@@ -69,6 +69,7 @@ for i in reversed(range(int(math.log(k_len, 2)))):
 
 
 print(k[location])
+print(decode(key, k[location]))
 
 # ciphertext = encode(key, 'hello')
 # plaintext = decode(key, ciphertext)
